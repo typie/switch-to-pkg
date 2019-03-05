@@ -1,6 +1,6 @@
 {
   "name": "switch-to-pkg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Switch to any open application in a blaze",
   "keywords": [
     "typie",
@@ -16,7 +16,7 @@
   "author": "Rotem Grimberg <rotemgrim@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "typie-sdk": "^1.0.14"
+    "typie-sdk": "^1.0.15"
   },
   "repository": {
     "type": "git"

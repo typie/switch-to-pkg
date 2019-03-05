@@ -8,10 +8,13 @@ class SwitchTo extends AbstractTypiePackage {
         this.packageName = 'SwitchTo';
         this.db          = 'global';
         this.typie       = new TypieCore(this.packageName, this.db);
+        this.intervalTime  = config.intervalTime; // milliseconds -> do not lower below 1000
+        this.watchInterval = null;
+        this.startWatch();
     }
 
     activate(pkgList, item, cb) {
-        this.typie.remove(item).go()
+        this.typie.switchTo(item).go()
             .then(() => {
                 setTimeout(() => {
                     this.win.hide();
@@ -26,6 +29,17 @@ class SwitchTo extends AbstractTypiePackage {
                 this.win.show();
             })
             .catch(err => console.log(err));
+    }
+
+    startWatch() {
+        this.watchInterval = setInterval(() => {
+            this.typie.generateSwitchList().go()
+        }, this.intervalTime);
+    }
+
+    destroy() {
+        super.destroy();
+        clearInterval(this.watchInterval);
     }
 }
 module.exports = SwitchTo;

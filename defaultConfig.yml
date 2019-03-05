@@ -1,6 +1,6 @@
 
 windows:
-  # this keyboard shortcut will change to clipboard package
+  intervalTime: 5000 # milliseconds -> do not lower below 1000
 
 
-mac:
+# mac: not working in mac - sorry
