@@ -63,10 +63,7 @@ class SwitchTo extends AbstractTypiePackage {
 
     search(obj, callback) {
         this.typie.fuzzySearch(obj.value).orderBy("score").desc().go()
-            .then(res => {
-                res.data = res.data.filter(x => x.title !== "Typie");
-                callback(res);
-            })
+            .then(res => callback(res))
             .catch(err => console.log(err));
     }
 
@@ -77,7 +74,7 @@ class SwitchTo extends AbstractTypiePackage {
                 // existing hwnds
                 const hwndsArr = res.data.map(x => x.p);
                 res.data = [...new Set(res.data.filter(x => {
-                    if (x.title === "Typie" || x.p === this.lastHWND) {
+                    if (x.p === this.lastHWND) {
                         return false;
                     }
                     x._activated = this.sorted[x.p] ? this.sorted[x.p] : 1;
